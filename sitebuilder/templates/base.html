@@ -1,0 +1,44 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="{% static 'pico/pico.min.css' %}">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+
+        <title>{% block title %}{% endblock %} - Makes Human Art</title>
+    </head>
+
+    <body>
+        <header class="container">
+            <hgroup>
+                <h1>{% block heading %}{% endblock %}</h1>
+            </hgroup>
+        </header>
+
+        <main class="container">
+            {% block messages %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-dismissible
+                            {% if message.level_tag == 'error' %}
+                                alert-danger
+                            {% else %}
+                                alert-{{ message.tags }}
+                            {% endif %}">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endblock messages %}
+
+            {% block content %}{% endblock %}
+        </main>
+    </body>
+</html>
