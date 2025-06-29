@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="{% static 'pico/pico.min.css' %}">
         <link rel="stylesheet" href="{% static 'style.css' %}">
 
+        {% block head %}{% endblock %}
+
         <title>{% block title %}{% endblock %} - Makes Human Art</title>
     </head>
 
@@ -30,9 +32,6 @@
                                 alert-{{ message.tags }}
                             {% endif %}">
                             {{ message }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                     {% endfor %}
                 {% endif %}

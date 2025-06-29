@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'editor.apps.EditorConfig',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'sitebuilder.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'sitebuilder', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'sitebuilder', 'templates'), os.path.join(BASE_DIR, 'editor', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,7 +124,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, "sitebuilder/static")]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "sitebuilder/static"), os.path.join(BASE_DIR, "editor/static")]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_FINDERS = [
         "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -133,3 +134,7 @@ STATICFILES_FINDERS = [
 # Media files (User uploaded images)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_URL = '/login/'
+
+APPEND_SLASH = True

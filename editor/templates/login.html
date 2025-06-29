@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block heading %}Login{% endblock %}
+
+{% block content %}
+    <form method='post'>
+        {% csrf_token %}
+        <div class="grid">
+            <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                aria-label="Username"
+                required
+            >
+            <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                aria-label="Password"
+                required
+            >
+            <button type="submit">Login</button>
+        </div>
+    </form>
+
+{% endblock %}
