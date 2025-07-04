@@ -27,6 +27,7 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout_view'),
     path('admin/', admin.site.urls),
     path('editor/', include('editor.urls')),
+    path('donate/', views.donate, name='donate'),
 ]
 
 if settings.DEBUG:

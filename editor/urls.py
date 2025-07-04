@@ -20,4 +20,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='editor'),
+    path('edit/<int:page_id>/', views.edit_page, name='edit_page')
 ]

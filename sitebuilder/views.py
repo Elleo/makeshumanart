@@ -7,14 +7,19 @@ from django.contrib.auth import authenticate, login, logout
 
 def index(request):
     template = loader.get_template('index.html')
-    context = {}
+    context = {'logged_in': request.user.is_authenticated}
+    return HttpResponse(template.render(context, request))
+
+def donate(request):
+    template = loader.get_template('donate.html')
+    context = {'logged_in': request.user.is_authenticated}
     return HttpResponse(template.render(context, request))
 
 def login_view(request):
     if request.user.is_authenticated:
         return redirect("/")
     template = loader.get_template('login.html')
-    context = {}
+    context = {'logged_in': request.user.is_authenticated}
     if 'username' in request.POST:
         username = request.POST["username"]
         password = request.POST["password"]
@@ -25,7 +30,7 @@ def login_view(request):
                 return redirect(iri_to_uri(request.GET['next']))
             return redirect("/")
         else:
-            context = {'messages': ['Invalid username or password']}
+            context['messages']=['Invalid username or password']
     return HttpResponse(template.render(context, request))
 
 def logout_view(request):

@@ -17,8 +17,36 @@
     <body>
         <header class="container">
             <hgroup>
-                <h1>{% block heading %}{% endblock %}</h1>
+                <small><details class="dropdown" style='width: 140px; float: right;'>
+                    <summary role="button" class="secondary">Theme</summary>
+                    <ul>
+                        <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                        <li><a href="#" data-theme-switcher="light">Light</a></li>
+                        <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+                    </ul>
+                </details></small>
+                <h1>{% block heading %}{% endblock %}</h1><br />
             </hgroup>
+            <nav>
+                <ul>
+                    <li><a href='/'>Welcome</a></li>
+                    <li><a href='https://discord.gg/sqWyFthayE'>Discord</a></li>
+                    <li><a href='/donate'>Donate</a></li>
+                    {% if logged_in %} 
+                    <li><a href='/editor'>Editor</a></li>
+                    {% endif %} 
+                </ul>
+            </nav>
+            <nav>
+                <ul>
+                    {% if logged_in %}
+                    <li><a href='/logout'>Logout</a></li>
+                    {% else %}
+                    <li><a href='/apply'>Register</a></li>
+                    <li><a href='/login'>Login</a></li>
+                    {% endif %} 
+                </ul>
+            </nav>
         </header>
 
         <main class="container">
@@ -39,5 +67,7 @@
 
             {% block content %}{% endblock %}
         </main>
+        
+        <script type="text/javascript" src="{% static 'js/minimal-theme-switcher.js' %}"></script>
     </body>
 </html>

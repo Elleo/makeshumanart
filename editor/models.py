@@ -19,48 +19,6 @@ class Site(models.Model):
     def __str__(self):
         return self.title
 
-    def generate(self):
-        moduledir = pathlib.Path(__file__).parent.resolve()
-        themedir = os.path.join(moduledir, 'themes')
-        wd = os.getcwd()
-        os.chdir('sites')
-        hugodir = '%s.%s' % (self.subdomain, self.domain)
-        if os.path.exists(hugodir):
-            shutil.rmtree(hugodir)
-        subprocess.run(['hugo', 'new', 'site', hugodir])
-        toml = """
-baseURL = 'https://%s.%s/'
-languageCode = 'en-us'
-title = "%s"
-theme = '%s'""" % (self.subdomain, self.domain, self.title, self.theme)
-        with open(os.path.join(hugodir, "hugo.toml"), 'w') as f:
-            f.write(toml)
-        for page in Page.objects.filter(site=self):
-            output = """+++
-title = "%s"
-%s
-draft = false
-+++\n""" % (page.title, ("menus = \"%s\"" % page.menu) if page.menu is not None else "")
-            sections = list(TextSection.objects.filter(page=page)) + list(ImageSection.objects.filter(page=page))
-            for section in sorted(sections, key=lambda section: section.position):
-                output += section.text + "\n\n"
-            print(page.index)
-            if page.index:
-                filename = "_index.md"
-            elif page.menu is not None:
-                filename = page.menu + ".md"
-            else:
-                filename = page.title + ".md"
-            filename = filename.replace(" ", "_")
-            with open(os.path.join(hugodir, "content", filename), 'w') as f:
-                f.write(output.replace("\r\n", "\n"))
-        shutil.copytree(os.path.join(themedir, self.theme), os.path.join(hugodir, 'themes', self.theme))
-        default_dir = os.path.join(hugodir, 'themes', self.theme, 'layouts', '_default')
-        shutil.copy(os.path.join(default_dir, "single.html"), os.path.join(default_dir, "index.html"))
-        os.chdir(hugodir)
-        subprocess.run(['hugo'])
-        os.chdir(wd)
-
 
 class Page(models.Model):
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
@@ -68,7 +26,8 @@ class Page(models.Model):
     created_date = models.DateTimeField("Date created", auto_now_add=True, editable=False)
     modified_date = models.DateTimeField("Date modified", auto_now=True)
     index = models.BooleanField(default=False)
-    menu = models.CharField(max_length=255, null=True, blank=True)
+    include_in_menu = models.BooleanField(default=True)
+    menu_position = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title

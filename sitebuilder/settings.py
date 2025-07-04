@@ -26,8 +26,13 @@ SECRET_KEY = 'django-insecure-$&q6(*7@xzocxonn5ba-h5tdi5aj(xrj$o_orc6zagdj_a_rh9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'makeshuman.art'
+]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://makeshuman.art'
+]
 
 # Application definition
 

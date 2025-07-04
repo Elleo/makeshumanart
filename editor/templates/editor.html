@@ -1,38 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block head %}
-    <link rel="stylesheet" href="{% static 'toastui/toastui-editor.min.css' %}" />
-    <script type='text/javascript' src="{% static 'jquery/jquery.min.js' %}"></script>
-    <script type='text/javascript' src="{% static 'toastui/toastui-editor-all.min.js' %}"></script>
+{% block title %}Site Editor{% endblock %}
 
-    <script type='text/javascript'>
-        $(document).ready(function () {
-            const editor = new toastui.Editor({
-                el: document.querySelector('#editor'),
-                height: '500px',
-                initialEditType: 'wysiwyg',
-                usageStatistics: false,
-                hideModeSwitch: true
-            });
-            
-            editor.getMarkdown();
-        });
-    </script>
-{% endblock %}
-
-{% block title %}Page Editor{% endblock %}
-
-{% block heading %}Page Editor{% endblock %}
+{% block heading %}Site Editor{% endblock %}
 
 {% block content %}
-    <form method='post'>
-        {% csrf_token %}
-            <div id='editor'></div>
-            <noscript><textarea></textarea></noscript>
-            <br />
-            <button type="submit">Save</button>
-        </div>
-    </form>
-
 {% endblock %}
