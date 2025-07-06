@@ -28,6 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('editor/', include('editor.urls')),
     path('donate/', views.donate, name='donate'),
+    path('support/', views.support, name='support'),
 ]
 
 if settings.DEBUG:

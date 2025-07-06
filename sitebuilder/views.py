@@ -15,6 +15,11 @@ def donate(request):
     context = {'logged_in': request.user.is_authenticated}
     return HttpResponse(template.render(context, request))
 
+def support(request):
+    template = loader.get_template('support.html')
+    context = {'logged_in': request.user.is_authenticated}
+    return HttpResponse(template.render(context, request))
+
 def login_view(request):
     if request.user.is_authenticated:
         return redirect("/")

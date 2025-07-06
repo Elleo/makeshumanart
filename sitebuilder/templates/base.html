@@ -8,6 +8,7 @@
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="{% static 'pico/pico.min.css' %}">
         <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="{% static 'nav.css' %}">
 
         {% block head %}{% endblock %}
 
@@ -15,31 +16,21 @@
     </head>
 
     <body>
-        <header class="container">
+        <header class="container" style='height: 72px;'>
             <hgroup>
-                <small><details class="dropdown" style='width: 140px; float: right;'>
-                    <summary role="button" class="secondary">Theme</summary>
-                    <ul>
-                        <li><a href="#" data-theme-switcher="auto">Auto</a></li>
-                        <li><a href="#" data-theme-switcher="light">Light</a></li>
-                        <li><a href="#" data-theme-switcher="dark">Dark</a></li>
-                    </ul>
-                </details></small>
+                <a class="moonlink" href="#" data-theme-switcher="light"><div class='moon'></div></a>
+                <a class="sunlink" href="#" data-theme-switcher="dark">☼</a>
                 <h1>{% block heading %}{% endblock %}</h1><br />
             </hgroup>
-            <nav>
-                <ul>
+            <nav role="menu">
+                <label data-role="burger"><input type="checkbox" /></label>
+                <ul role="menuitem">
                     <li><a href='/'>Welcome</a></li>
                     <li><a href='https://discord.gg/sqWyFthayE'>Discord</a></li>
                     <li><a href='/donate'>Donate</a></li>
-                    {% if logged_in %} 
-                    <li><a href='/editor'>Editor</a></li>
-                    {% endif %} 
-                </ul>
-            </nav>
-            <nav>
-                <ul>
+                    <li><a href='/support'>Support</a></li>
                     {% if logged_in %}
+                    <li><a href='/editor'>Editor</a></li>
                     <li><a href='/logout'>Logout</a></li>
                     {% else %}
                     <li><a href='/apply'>Register</a></li>

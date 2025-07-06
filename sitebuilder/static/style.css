@@ -2,6 +2,10 @@ body {
     padding: 1em;
 }
 
+p {
+    text-align: justify;
+}
+
 #logo {
     max-height: 150px;
     margin-top: 10px;
@@ -33,4 +37,42 @@ body {
 [data-theme="dark"] .githubimg {
     background-image: url('/static/images/github-mark-white.png');
 }
+
+.moon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    box-shadow: 8px 8px 0 0 var(--pico-h1-color);
+}
+
+.moonlink {
+    display: inline-block;
+    float: right;
+    z-index: 1;
+    padding: 12px;
+    margin: -12px;
+    position: relative;
+    left: -20px;
+    top: -6px;
+}
+
+.sunlink {
+    display: inline-block;
+    float: right;
+    z-index: 1;
+    font-size: 48px;
+    margin-left: 12px;
+    color: var(--pico-h1-color);
+    text-decoration: none;
+    position: relative;
+    top: -21px;
+    left: -2px;
+} 
+
+[data-theme="light"] .moonlink {
+    display: none;
+}
+
+[data-theme="dark"] .sunlink {
+    display: none;
 }
