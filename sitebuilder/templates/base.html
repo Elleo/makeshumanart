@@ -16,10 +16,10 @@
     </head>
 
     <body>
-        <header class="container" style='height: 72px;'>
+        <header class="container">
             <hgroup>
                 <a class="moonlink" href="#" data-theme-switcher="light"><div class='moon'></div></a>
-                <a class="sunlink" href="#" data-theme-switcher="dark">☼</a>
+                <a class="sunlink" href="#" data-theme-switcher="dark"><img style='width: 32px;' src="{% static 'images/sun_icon.svg' %}" alt='Sun' title='Light mode' /></a>
                 <h1>{% block heading %}{% endblock %}</h1><br />
             </hgroup>
             <nav role="menu">

@@ -32,7 +32,7 @@
     width: 28px;
     margin: 0;
     border: 0 solid var(--pico-h1-color);
-    margin-top: -95px;
+    margin-top: -80px;
     padding: 10px;
     height: 45px;
     margin-right: 58px;
@@ -104,10 +104,9 @@
     opacity: 0;
     transition: all 0.2s ease-in-out;
     position: relative;
-    background-color: var(--pico-background-color);
 }
 
-/* show hidden items when burger is checked :D */
+/* show hidden items when burger is checked */
 :where(menu, [role="menu"]):has(> label > input[type="checkbox"]:checked) > [role="menuitem"] {
     visibility: visible;
     opacity: 1;
@@ -124,6 +123,8 @@
 
 nav {
     height: 0;
+    display: inherit;
+    top: -28px;
 }
 
 @media (min-width: 576px) {
@@ -139,4 +140,25 @@ nav {
         display: flex;
         top: unset;
     }
+}
+
+@media (max-width: 576px) {
+    nav {
+        top: 0;
+    }
+
+    [data-theme="light"] ul {
+        background-color: rgb(235, 235, 235);
+        border: 1px solid rgba(200, 200, 200, 0.4);
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+    }
+
+    [data-theme="dark"] ul {
+        background-color: #1f2838;
+        border: 1px solid rgba(19, 22.5, 30.5, 0.4);
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
+    }
+
 }
