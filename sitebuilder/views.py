@@ -20,6 +20,11 @@ def support(request):
     context = {'logged_in': request.user.is_authenticated}
     return HttpResponse(template.render(context, request))
 
+def apply(request):
+    template = loader.get_template('apply.html')
+    context = {'logged_in': request.user.is_authenticated}
+    return HttpResponse(template.render(context, request))
+
 def login_view(request):
     if request.user.is_authenticated:
         return redirect("/")

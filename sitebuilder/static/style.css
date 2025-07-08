@@ -4,6 +4,7 @@ body {
     background-size: cover;
     z-index: -2;
     position: relative;
+    background-attachment: fixed;
 }
 
 [data-theme="light"] body {

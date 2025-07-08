@@ -147,15 +147,15 @@ nav {
         top: 0;
     }
 
-    [data-theme="light"] ul {
+    [data-theme="light"] nav > ul {
         background-color: rgb(235, 235, 235);
         border: 1px solid rgba(200, 200, 200, 0.4);
         border-radius: 10px;
         backdrop-filter: blur(5px);
     }
 
-    [data-theme="dark"] ul {
-        background-color: #1f2838;
+    [data-theme="dark"] nav > ul {
+        background-color: #1a2436;
         border: 1px solid rgba(19, 22.5, 30.5, 0.4);
         border-radius: 10px;
         backdrop-filter: blur(5px);

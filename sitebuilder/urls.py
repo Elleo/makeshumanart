@@ -29,6 +29,7 @@ urlpatterns = [
     path('editor/', include('editor.urls')),
     path('donate/', views.donate, name='donate'),
     path('support/', views.support, name='support'),
+    path('apply/', views.apply, name='apply')
 ]
 
 if settings.DEBUG:
