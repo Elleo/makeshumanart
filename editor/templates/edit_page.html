@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'toastui/toastui-editor.min.css' %}" />
+    <script type='text/javascript' src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script type='text/javascript' src="{% static 'toastui/toastui-editor-all.min.js' %}"></script>
+
+    <script type='text/javascript'>
+        var editor;
+        $(document).ready(function () {
+            editor = new toastui.Editor({
+                el: document.querySelector('#editor'),
+                height: '500px',
+                initialEditType: 'wysiwyg',
+                initialValue: `{{section.text}}`,
+                usageStatistics: false,
+                hideModeSwitch: true
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block title %}Edit{% endblock %}
+
+{% block heading %}Edit{% endblock %}
+
+{% block content %}
+    <h1>{{page.title}}</h1>
+    <form method='post' id="section_form">
+        {% csrf_token %}
+            <div id='editor'></div>
+            <input type="hidden" id="section_text" name="section_text" />
+            <noscript><textarea id="section_text_fallback" name="section_text_fallback">{{section.text}}</textarea></noscript>
+            <br />
+            <button type="submit" onclick='$("#section_text").val(editor.getMarkdown());'>Save</button>
+        </div>
+    </form>
+
+{% endblock %}

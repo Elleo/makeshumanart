@@ -1,8 +1,9 @@
+from django.contrib.auth.models import User
 from django.db import models
 import os, os.path
-import shutil
-import pathlib
 import subprocess
+import pathlib
+import shutil
 
 
 class Site(models.Model):
@@ -15,6 +16,7 @@ class Site(models.Model):
     theme = models.CharField(default='hugo-paper', max_length=255, choices=[
         ('hugo-paper', 'Paper')
         ])
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

@@ -20,5 +20,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='editor'),
-    path('edit/<int:page_id>/', views.edit_page, name='edit_page')
+    path('site/<int:site_id>/page/<int:page_id>/', views.edit_page, name='edit_page'),
+    path('site/<int:site_id>/', views.edit_site, name='edit_site'),
+    path('site/<int:site_id>/themes/', views.theme_picker, name='theme_picker')
 ]

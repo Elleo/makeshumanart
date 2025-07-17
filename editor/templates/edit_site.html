@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Site Editor{% endblock %}
+
+{% block heading %}Site Editor{% endblock %}
+
+{% block content %}
+    <div class='smallform'>
+        <form method='post' id="section_form">
+            {% csrf_token %}
+            <label for="title"><strong>Site Title:</strong></label> <input type='text' value='{{site.title}}' /><br /><br />
+            <strong>Domain:</strong> <a href='https://{{site.subdomain}}.{{site.domain}}'>{{site.subdomain}}.{{site.domain}}</a><br /><br />
+            <strong>Theme:</strong> {{site.theme}} <button style='margin-left: 1em;' class='smallbutton' formaction='/editor/site/{{site.pk}}/themes/'>Change Theme</button><br />
+            <br />
+            <strong>Pages:</strong><br />
+            <ul style='margin-top: 15px;'>
+                {% for page in pages %}
+                    <li><a href='/editor/site/{{site.pk}}/page/{{page.pk}}/'>{{page.title}}</a></li>
+                {% endfor %}
+            </ul>
+            <button class='smallbutton'>Add Page</button></br >
+        </form>
+    </div>
+{% endblock %}
