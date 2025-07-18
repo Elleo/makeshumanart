@@ -60,10 +60,10 @@ def theme_picker(request, site_id):
     template = loader.get_template('theme_picker.html')
     site = Site.objects.get(pk=site_id)
     available_themes = []
-    for item in os.listdir(os.path.join(os.path.dirname(__file__), 'themes')):
-        if os.path.isdir(item):
+    theme_path = os.path.join(os.path.dirname(__file__), 'themes')
+    for item in os.listdir(theme_path):
+        if os.path.isdir(os.path.join(theme_path, item)):
             available_themes.append(item)
-    print(available_themes)
     context = {
         'site': site,
         'available_themes': available_themes,
