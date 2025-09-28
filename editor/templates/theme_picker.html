@@ -9,11 +9,7 @@
     <form method='post' id="section_form">
         {% csrf_token %}
         {% for theme in available_themes %}
-            {% if theme != site.theme %}
-                <button name='theme' value='{{theme}}'>{{theme}}</button>
-            {% else %}
-                {{theme}}
-            {% endif %}
+	    <button name='theme' {% if theme == site.theme %}disabled{% endif %} value='{{theme}}'><img style='width: 150px; height: auto;' src='{% static 'theme-previews/'%}{{theme}}.png'/><br />{{theme}}</button>
         {% endfor %}
     </form>
 {% endblock %}

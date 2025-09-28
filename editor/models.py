@@ -58,3 +58,42 @@ class ImageSection(models.Model):
             return self.alt_text
         else:
             return "Image"
+
+
+class Template(models.Model):
+    name = models.CharField(max_length=255)
+
+
+class TemplatePage(models.Model):
+    template = models.ForeignKey(Template, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    index = models.BooleanField(default=False)
+    include_in_menu = models.BooleanField(default=True)
+    menu_position = models.IntegerField(default=0)
+
+
+class TemplateTextSection(models.Model):
+    template = models.ForeignKey(Template, on_delete=models.CASCADE)
+    position = models.IntegerField(default=0)
+    text = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.text
+
+
+class TemplateImageSection(models.Model):
+    template = models.ForeignKey(Template, on_delete=models.CASCADE)
+    position = models.IntegerField(default=0)
+    caption = models.TextField(null=True, blank=True)
+    alt_text = models.TextField(null=True, blank=True)
+    image = models.ImageField()
+
+    def __str__(self):
+        if self.caption:
+            return self.caption
+        elif self.alt_text:
+            return self.alt_text
+        else:
+            return "Image"
+
+

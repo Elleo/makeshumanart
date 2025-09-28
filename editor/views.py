@@ -43,6 +43,22 @@ def edit_site(request, site_id):
 
 @login_required
 @owns_site
+def new_page(request, site_id):
+    template = loader.get_template('add_page.html')
+    site = Site.objects.get(pk=site_id)
+    if 'page_title' in request.POST:
+        position = len(Page.objects.filter(site=site))
+        page = Page.objects.create(title=request.POST['page_title'], site=site, menu_position=position)
+        TextSection.objects.create(page=page, text='')
+        return redirect(f"/editor/site/{site.pk}/page/{page.pk}/")
+    context = {
+        'site': site,
+        'logged_in': True
+    }
+    return HttpResponse(template.render(context, request))
+
+@login_required
+@owns_site
 def edit_page(request, site_id, page_id):
     template = loader.get_template('edit_page.html')
     page = Page.objects.get(pk=page_id)
