@@ -7,6 +7,10 @@ body {
     background-attachment: fixed;
 }
 
+@view-transition {
+    navigation: auto;
+}
+
 [data-theme="light"] body {
     background-image: url('/static/images/pexels-jessbaileydesign-743986.jpg');
 }
